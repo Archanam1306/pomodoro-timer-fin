@@ -25,10 +25,10 @@ body{
     background-color: var(--bg-body);
     overflow-x: hidden;
     position: relative;
-    padding: 1rem;
 }
 footer{
     color: var(--bg);
+    padding: 1rem;
 }
 a{
     color: var(--bg);
@@ -90,7 +90,7 @@ main{
     margin-top: 5rem;
     max-width: 600px;
     width: 100%;
-    padding: 1rem;    overflow-x: hidden;
+    overflow-x: hidden;
 }
 button{
     cursor: pointer;
@@ -120,7 +120,7 @@ button{
     display: flex;
     width: 100%;
     gap: 0.5rem;
-    box-shadow: var(--text) 0px 2px 4px 0px, var(--text) 0px 2px 16px 0px;
+
 }
 
 .timer{
@@ -289,7 +289,9 @@ input[type=number] {
     position: absolute;
     transition: all 200ms ease-in-out;
 }
-
+.top img{
+    display: block;
+}
 .bottom{
     right: 10px;
     transition: all 200ms ease-in-out;

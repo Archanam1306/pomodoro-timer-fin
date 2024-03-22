@@ -26,14 +26,69 @@ const shortBreakInput = document.getElementById('shortBreakTime')
 const longBreakTimeInput = document.getElementById('longBreakTime')
 
 
+const incrementBtn = document.querySelectorAll('.top')
+const decreaseBtn = document.querySelectorAll('.bottom')
+
 let t2
 const apply = document.querySelector('.apply')
 
+incrementBtn.forEach(btn=>{
+   btn.addEventListener('click',function(e){
+      
+        if(e.target.parentElement.parentElement.previousElementSibling.getAttribute('id')== 'pomodoroTime' && +document.getElementById('pomodoroTime').value < 99){
+           +document.getElementById('pomodoroTime').value++
+            modified.pomodoro = +document.getElementById('pomodoroTime').value
+            changeValues(modified.pomodoro)
+            console.log(e.target.parentElement.parentElement.previousElementSibling.getAttribute('id')== 'pomodoroTime')
+        }
+        else if(e.target.parentElement.parentElement.previousElementSibling.getAttribute('id')== 'shortBreakTime' && +document.getElementById('shortBreakTime').value < 99){
+            +document.getElementById('shortBreakTime').value++
+            modified.shortBreak = +document.getElementById('shortBreakTime').value
+            changeValues(modified.shortBreak)
+        }
+        else if(e.target.parentElement.parentElement.previousElementSibling.getAttribute('id')== 'longBreakTime' && +document.getElementById('longBreakTime').value < 99){
+            +document.getElementById('longBreakTime').value++
+            modified.longBreak = +document.getElementById('longBreakTime').value
+            changeValues(modified.longBreak)
+        }
+    })
+})
+decreaseBtn.forEach(btn=>{
+    btn.addEventListener('click',function(e){
+       
+         if(e.target.parentElement.parentElement.previousElementSibling.getAttribute('id')== 'pomodoroTime' && +document.getElementById('pomodoroTime').value > 1){
+            +document.getElementById('pomodoroTime').value--
+             modified.pomodoro = +document.getElementById('pomodoroTime').value
+             changeValues(modified.pomodoro)
+             console.log(e.target.parentElement.parentElement.previousElementSibling.getAttribute('id')== 'pomodoroTime')
+         }
+         else if(e.target.parentElement.parentElement.previousElementSibling.getAttribute('id')== 'shortBreakTime' && +document.getElementById('shortBreakTime').value > 1){
+             +document.getElementById('shortBreakTime').value--
+             modified.shortBreak = +document.getElementById('shortBreakTime').value
+             changeValues(modified.shortBreak)
+         }
+         else if(e.target.parentElement.parentElement.previousElementSibling.getAttribute('id')== 'longBreakTime' && +document.getElementById('longBreakTime').value > 1){
+             +document.getElementById('longBreakTime').value--
+             modified.longBreak = +document.getElementById('longBreakTime').value
+             changeValues(modified.longBreak)
+         }
+     })
+ })
 function changeValues(value){
     clearInterval(pomodoroInterval)
-    minutesLabel.innerHTML =value.toString().padStart(2,"0")
-    secondsLabel.innerHTML = `00`
-    console.log(value)
+    
+    if(document.querySelector('.options button.active').getAttribute('id') == 'pomodoro'){
+        minutesLabel.innerHTML =modified.pomodoro.toString().padStart(2,"0")
+        secondsLabel.innerHTML = `00`
+    }
+    else if(document.querySelector('.options button.active').getAttribute('id') == 'shortBreak'){
+        minutesLabel.innerHTML =modified.shortBreak.toString().padStart(2,"0")
+        secondsLabel.innerHTML = `00`
+    }
+    else if(document.querySelector('.options button.active').getAttribute('id') == 'longBreak'){
+        minutesLabel.innerHTML =modified.longBreak.toString().padStart(2,"0")
+        secondsLabel.innerHTML = `00`
+    }
     timerValue= value * 60
     time=value
     multiplierFactor=360/timerValue
@@ -104,39 +159,17 @@ btn_options.forEach(btn=>{
         })
         e.target.classList.add('active')
         if(e.target.classList.contains('active') && e.target.id == 'pomodoro' ){
-            minutesLabel.innerHTML =modified.pomodoro
-            secondsLabel.innerHTML = `00`
-            timerValue= modified.pomodoro * 60
-            clearInterval(pomodoroInterval)
-            time=modified.pomodoro
-            multiplierFactor=360/timerValue
-            t2=Math.floor(timerValue * multiplierFactor)
-            circle.setAttribute('data-currentState',t2)
-           
+
+            changeValues(modified.pomodoro)
         }
         else if(e.target.classList.contains('active') && e.target.id == 'shortBreak' ){
-            minutesLabel.innerHTML = modified.shortBreak.toString().padStart(2,0)
-            secondsLabel.innerHTML = `00`
-            timerValue= modified.shortBreak * 60
-            clearInterval(pomodoroInterval)
-            time=modified.shortBreak
-            multiplierFactor=360/timerValue
-            t2=Math.floor(timerValue * multiplierFactor)
-            circle.setAttribute('data-currentState',t2)
+            changeValues(modified.shortBreak)
         }
         else if(e.target.classList.contains('active') && e.target.id == 'longBreak' ){
-            minutesLabel.innerHTML = modified.longBreak
-            timerValue= modified.longBreak * 60
-            secondsLabel.innerHTML = `00`
-            clearInterval(pomodoroInterval)
-            time=modified.longBreak
-            multiplierFactor=360/timerValue
-            t2=Math.floor(timerValue * multiplierFactor)
-            circle.setAttribute('data-currentState',t2)
+         
+            changeValues(modified.longBreak)
         }
-        play.innerHTML = 'PLAY'
-        paused = false 
-        circle.style.background = `conic-gradient(var(--${modified.backgroundColor}) ${360}deg, var(--bg-body) 0deg)`;
+     
     })
 })
 
