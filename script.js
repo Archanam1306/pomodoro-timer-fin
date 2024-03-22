@@ -60,7 +60,7 @@ apply.addEventListener('click',function(){
     document.querySelector('.modal').classList.remove('modalActive')
     document.body.removeAttribute('class')
     document.body.classList.add(modified.backgroundColor)
-
+    circle.style.background = `conic-gradient(var(--${modified.backgroundColor}) ${+circle.getAttribute('data-currentState')}deg, var(--bg-body) 0deg)`;
 })
 const close = document.querySelector('.close')
 close.addEventListener('click',function(){
