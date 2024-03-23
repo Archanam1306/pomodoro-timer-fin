@@ -39,7 +39,6 @@ incrementBtn.forEach(btn=>{
            +document.getElementById('pomodoroTime').value++
             modified.pomodoro = +document.getElementById('pomodoroTime').value
             changeValues(modified.pomodoro)
-            console.log(e.target.parentElement.parentElement.previousElementSibling.getAttribute('id')== 'pomodoroTime')
         }
         else if(e.target.parentElement.parentElement.previousElementSibling.getAttribute('id')== 'shortBreakTime' && +document.getElementById('shortBreakTime').value < 99){
             +document.getElementById('shortBreakTime').value++
@@ -60,7 +59,7 @@ decreaseBtn.forEach(btn=>{
             +document.getElementById('pomodoroTime').value--
              modified.pomodoro = +document.getElementById('pomodoroTime').value
              changeValues(modified.pomodoro)
-             console.log(e.target.parentElement.parentElement.previousElementSibling.getAttribute('id')== 'pomodoroTime')
+          
          }
          else if(e.target.parentElement.parentElement.previousElementSibling.getAttribute('id')== 'shortBreakTime' && +document.getElementById('shortBreakTime').value > 1){
              +document.getElementById('shortBreakTime').value--
@@ -99,15 +98,33 @@ function changeValues(value){
     circle.style.background = `conic-gradient(var(--${modified.backgroundColor}) ${360}deg, var(--bg-body) 0deg)`;
 }
 pomodorInput.addEventListener('input',function(e){
-    modified.pomodoro = +e.target.value
+    if(+e.target.value > 1){
+        modified.pomodoro = +e.target.value
+    }else{
+        modified.pomodoro = 1
+        e.target.value = 1
+    }
+  
     changeValues(modified.pomodoro)
 })
 shortBreakInput.addEventListener('input',function(e){
-    modified.shortBreak = +e.target.value
+
+    if(+e.target.value > 1){
+        modified.shortBreak = +e.target.value
+    }else{
+        modified.shortBreak = 1
+        e.target.value = 1
+    }
     changeValues(modified.shortBreak)
 })
 longBreakTimeInput.addEventListener('input',function(e){
-    modified.longBreak = +e.target.value
+    if(+e.target.value > 1){
+         modified.longBreak = +e.target.value
+    }else{
+         modified.longBreak = 1
+        e.target.value = 1
+    }
+   
     changeValues(modified.longBreak)
 })
 apply.addEventListener('click',function(){
@@ -177,7 +194,7 @@ btn_options.forEach(btn=>{
 play.addEventListener('click',function(e){
     let newTime,seconds,temp
     temp = time
-    console.log(timerValue)
+
     if(paused){
         play.innerHTML = 'PLAY'
         paused = false
@@ -189,7 +206,6 @@ play.addEventListener('click',function(e){
         newTime =+document.querySelector('.minutes').innerHTML < time ? +document.querySelector('.minutes').innerHTML : time-1
         seconds =+document.querySelector('.seconds').innerHTML == 0 ? 59 : +document.querySelector('.seconds').innerHTML
         timerValue= +circle.getAttribute('data-currentState') == timerValue ? +circle.getAttribute('data-currentState') :  timerValue--
-        console.log(timerValue)
         if(newTime == 0){
             newTime = temp-1
         }
@@ -206,7 +222,7 @@ play.addEventListener('click',function(e){
                     seconds=59
                 
                 }else{
-                    console.log('cleared', seconds)
+            
                     play.innerHTML = 'PLAY'
                     paused = false
                     time=temp
