@@ -73,6 +73,33 @@ decreaseBtn.forEach(btn=>{
          }
      })
  })
+ function resetTimer() {
+    clearInterval(pomodoroInterval);
+    paused = false;
+    play.innerHTML = 'PLAY';
+    time = modified.pomodoro;
+    timerValue = time * 60;
+    multiplierFactor = 360 / timerValue;
+    t2 = Math.floor(timerValue * multiplierFactor);
+    circle.setAttribute('data-currentState', t2);
+    minutesLabel.innerHTML = time.toString().padStart(2, "0");
+    secondsLabel.innerHTML = "00";
+    circle.style.background = `conic-gradient(var(--${modified.backgroundColor}) ${+circle.getAttribute('data-currentState')}deg, var(--bg-body) 0deg)`;
+    // Ensure that the reset button is not added multiple times
+    if (!document.querySelector('.reset')) {
+        const resetButton = document.createElement('button');
+        resetButton.innerHTML = 'RESET';
+        resetButton.className = 'reset';
+        resetButton.addEventListener('click', resetTimer);
+        document.body.appendChild(resetButton);
+    }
+}
+
+// Call resetTimer once the DOM content is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    resetTimer();
+});
+
 function changeValues(value){
     clearInterval(pomodoroInterval)
     
@@ -189,7 +216,6 @@ btn_options.forEach(btn=>{
      
     })
 })
-
 
 play.addEventListener('click',function(e){
     let newTime,seconds,temp
