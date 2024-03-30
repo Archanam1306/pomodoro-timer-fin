@@ -1,4 +1,4 @@
-https://pomodoro-timer-fin.vercel.app/
+https://pomodoro-timer-fin-z2nv.vercel.app/
 
 # ⏲ Pomodoro timer
 
