@@ -223,6 +223,104 @@ btn_options.forEach(btn=>{
      
     })
 })
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to store session data in local storage
+    function storeSessionData(sessionData) {
+        let sessions = JSON.parse(localStorage.getItem('sessions')) || [];
+        sessions.push(sessionData);
+        localStorage.setItem('sessions', JSON.stringify(sessions));
+    }
+
+    // Function to display historical data
+    function displayHistoricalData() {
+        let sessions = JSON.parse(localStorage.getItem('sessions')) || [];
+        let historicalList = document.getElementById('historicalList');
+        historicalList.innerHTML = '';
+
+        sessions.forEach(session => {
+            let li = document.createElement('li');
+            li.textContent = `Type: ${session.type}, Start Time: ${session.startTime}, End Time: ${session.endTime}, Duration: ${session.duration}ms`;
+            historicalList.appendChild(li);
+        });
+    }
+
+    // Example: Call this function when a session ends
+    function endSession(sessionType, startTime, endTime) {
+        let duration = endTime - startTime;
+        let sessionData = { type: sessionType, startTime: startTime, endTime: endTime, duration: duration };
+        storeSessionData(sessionData);
+        displayHistoricalData();
+    }
+
+    // Example: Call this function when a Pomodoro session ends
+    function pomodoroEnd(startTime, endTime) {
+        console.log('Pomodoro start time:', startTime);
+        console.log('Pomodoro end time:', endTime);
+        endSession('Pomodoro', startTime, endTime);
+    }
+
+    // Example: Call this function when a short break session ends
+    function shortBreakEnd(startTime, endTime) {
+        console.log('Short break start time:', startTime);
+        console.log('Short break end time:', endTime);
+        endSession('Short Break', startTime, endTime);
+    }
+
+    // Example: Call this function when a long break session ends
+    function longBreakEnd(startTime, endTime) {
+        console.log('Long break start time:', startTime);
+        console.log('Long break end time:', endTime);
+        endSession('Long Break', startTime, endTime);
+    }
+
+    // Call functions to display historical data on page load
+    displayHistoricalData();
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to update the session count
+    function updateSessionCount() {
+        let sessionCount = parseInt(localStorage.getItem('sessionCount')) || 0;
+        sessionCount++;
+        localStorage.setItem('sessionCount', sessionCount);
+        document.getElementById('sessionCount').textContent = sessionCount;
+    }
+
+    // Call the function to update session count whenever a session ends
+    function onSessionEnd() {
+        // Call updateSessionCount function
+        updateSessionCount();
+    }
+
+    // Example: Assume there's a function called endSession() that is called when a session ends
+    // Replace this with your actual implementation of ending a session
+    function endSession() {
+        // Call onSessionEnd() when a session ends
+        onSessionEnd();
+    }
+
+    // Example: Call endSession() when a Pomodoro session ends
+    // Replace this with your actual implementation
+    function pomodoroEnd() {
+        // Call endSession() when a Pomodoro session ends
+        endSession();
+    }
+
+    // Example: Call pomodoroEnd() when a Pomodoro session is completed
+    // Replace this with your actual implementation of detecting Pomodoro session completion
+    function detectPomodoroCompletion() {
+        // Call pomodoroEnd() when a Pomodoro session is completed
+        pomodoroEnd();
+        
+    }
+
+    // Add similar functions to handle short break and long break session completion
+
+    // Example: Call detectPomodoroCompletion() when a Pomodoro session is completed
+    // Replace this with your actual implementation of detecting Pomodoro session completion
+    detectPomodoroCompletion();
+    
+});
 
 play.addEventListener('click',function(e){
     let newTime,seconds,temp

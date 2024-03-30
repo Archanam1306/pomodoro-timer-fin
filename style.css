@@ -112,6 +112,33 @@ button{
     cursor: pointer;
     transition: all 0.5s ease-in-out;
 }
+/* CSS to style the "Session Progress" button and session count box */
+.session-progress {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: system-ui;
+}
+
+#sessionProgressButton {
+    margin-right: 10px; /* Adjust spacing as needed */
+
+}
+
+.session-count {
+    background-color: #f0f0f0;
+    color: #0a0909;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
 
 .options{
     padding: 1rem;
