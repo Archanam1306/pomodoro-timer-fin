@@ -1,4 +1,4 @@
-https://pomodoro-timer-fin-z2nv.vercel.app/
+**https://pomodoro-timer-fin-z2nv.vercel.app/**
 
 # ⏲ Pomodoro timer
 
@@ -22,5 +22,7 @@ Thanks for checking out this front-end coding solution.
 - CSS custom properties
 - Flexbox
 - Javascript
+### SCREENSHOTS
+
 
 **Have fun building!** 🚀
