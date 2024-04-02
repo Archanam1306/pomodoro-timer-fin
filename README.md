@@ -24,12 +24,10 @@ Thanks for checking out this front-end coding solution.
 - Javascript
 ### SCREENSHOTS
 
-![image](https://github.com/Archanam1306/pomodoro-timer-fin/assets/142501580/c499d1b5-afb7-46f5-8de6-837ebbf15f63)
-
 
 ![image](https://github.com/Archanam1306/pomodoro-timer-fin/assets/142501580/dc4ccc6b-2239-4eff-b45a-b687140579da)
 
-
+![image](https://github.com/Archanam1306/pomodoro-timer-fin/assets/142501580/c499d1b5-afb7-46f5-8de6-837ebbf15f63)
 
 
 **Have fun building!** 🚀
