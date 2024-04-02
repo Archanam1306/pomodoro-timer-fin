@@ -29,5 +29,8 @@ Thanks for checking out this front-end coding solution.
 
 ![image](https://github.com/Archanam1306/pomodoro-timer-fin/assets/142501580/c499d1b5-afb7-46f5-8de6-837ebbf15f63)
 
+![image](https://github.com/Archanam1306/pomodoro-timer-fin/assets/142501580/530e9a02-f65d-4cc5-bce6-d40df7f84b31)
+
+
 
 **Have fun building!** 🚀
