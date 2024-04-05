@@ -9,7 +9,7 @@
 Thanks for checking out this front-end coding solution.
 
 
-  Users should be able to:
+  Users should be able to:-
 
 - Set a pomodoro timer and short & long break timers
 - Customize how long each timer runs for
